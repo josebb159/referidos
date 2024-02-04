@@ -1,0 +1,24 @@
+<?php
+if(isset($conect)){if($conect==1){}else{include 'db.php';$conect =1;}}else{include 'db.php';$conect =1;}
+class userCompare {
+
+
+
+	public function __construct(){
+		$this->conexion = new Conexion();
+	}
+ 
+	public function gerUserCompare(){
+$sql = "SELECT id, correo, nombre FROM user_compare WHERE correo COLLATE utf8mb4_unicode_ci NOT IN (SELECT email COLLATE utf8mb4_unicode_ci FROM usuarios);";
+	$reg = $this->conexion->prepare($sql);
+	$reg->execute();
+	$consulta =$reg->fetchAll();
+	if ($consulta) {
+		return $consulta;
+	}else{
+		return 0;
+	} }
+
+
+}
+?>
