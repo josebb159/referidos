@@ -41,9 +41,9 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>NOMBRE</th>
-                                    <th>APELLIDO</th>
+                                
                                     <th>USUARIO</th>
-                                    <th>ROL</th>
+                               
                                     <th>FECHA REGISTRO</th>
                                     <th>ESTADO</th>
                                     <th>OPCIONES</th>

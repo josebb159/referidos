@@ -1,8 +1,7 @@
 <?php
+
 ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/tmp'));
 include '../model/userCompare.php';
-
-
 
 if(isset($_POST['op'])){
 	$op =  $_POST['op'];
@@ -10,7 +9,7 @@ if(isset($_POST['op'])){
 
 switch ($op) {
     case 'asyncUser':
-	$conexion = new Conexion();
+	$conexion = new Conexion2();
 	
 	break;
 	case 'registrar':
@@ -20,41 +19,84 @@ switch ($op) {
 	
 	break;
 	case 'buscar':
+   
 		$n_afiliado  = new userCompare();
+   
 		$resultado = $n_afiliado  -> gerUserCompare();
 		if($resultado==0){
 			exit();
 		}
 		foreach ($resultado as $key) {
-
+            $nombre = $key['nombre'];
+            $correo = $key['correo'];
+            $data = "'".$nombre."','".$correo."','','',''";
 		?>
 		<tr>
 			<td><?= $key['id']; ?></td>
-			<td><?= $key['nombre']; ?></td>
 			<td><?= $key['correo']; ?></td>
-		
+			<td><?= $key['nombre']; ?></td>
+            <td><input type="button" value="agregar"  type="button"  class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#modal_agregar" onclick="cargar_datos(<?php echo $data; ?>)"></td>
 		</tr>
 		<?php
 		}
 		
-		die();
+
 	break; 
 	case 'cambiar_estado':
 		$n_afiliado  = new afiliado();
 		$resultado = $n_afiliado  -> cambiar_estado_afiliado($id, $estado);
 		echo 1;
 	break;
+    case 'send_add':
+		//$url = 'https://afiliado.clubsky.online/api/clubsky_api.php';
+        $url ="http://localhost/refe2/referidos/api/clubsky_api.php";
+        $n_afiliado  = new userCompare();
+        $resultado = $n_afiliado  -> uptateUser($_POST['email']);
+        // Datos a enviar
+        $data_to_send = array(
+            'user'     => $_POST['user'],
+            'email'    => $_POST['email'],
+            'name'     => $_POST['name'],
+            'number'   => $_POST['number'],
+            'codigo'   => $_POST['codigo'],
+            'password' => $_POST['password'],
+            'data'     => 'register_afiliado'
+        );
+
+        // Convertir datos a formato JSON
+        $json_data = json_encode($data_to_send);
+
+        // Inicializar cURL
+        $ch = curl_init($url);
+
+        // Configurar opciones de cURL
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $json_data);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+
+        // Ejecutar cURL y obtener la respuesta
+        $response = curl_exec($ch);
+
+        // Verificar errores
+        if (curl_errno($ch)) {
+            echo 'Error en la solicitud cURL: ' . curl_error($ch);
+        }
+
+        // Cerrar cURL
+        curl_close($ch);
+
+        // Manejar la respuesta (puedes imprimir o procesar según tus necesidades)
+        echo $response;
+	break;
 	default:
 	break;
 }
 
-die();
-
-
-class Conexion extends PDO
+class Conexion2 extends PDO
 {
     private $tipo_de_base1 = 'mysql';
-    private $host1 = 'localhost';
+    private $host1 = '154.56.48.1';
     private $nombre_de_base1 = 'u887467577_clubsky';
     private $usuario1 = 'u887467577_clubsky';
     private $contrasena1 = '6jy^O1]tP';
@@ -62,11 +104,12 @@ class Conexion extends PDO
     private $tipo_de_base2 = 'mysql';
     private $host2 = 'localhost';
     private $nombre_de_base2 = 'u887467577_afiliado';
-    private $usuario2 = 'u887467577_afiliado';
-    private $contrasena2 = 'T1cswi>|';
+    private $usuario2 = 'root';
+    private $contrasena2 = '';
 
     public function __construct()
     {
+        echo "aqui";
         try {
             // Conexión a la base de datos 1
             $conexion1 = new PDO($this->tipo_de_base1 . ':host=' . $this->host1 . ';dbname=' . $this->nombre_de_base1, $this->usuario1, $this->contrasena1, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
@@ -108,7 +151,4 @@ class Conexion extends PDO
         }
     }
 }
-
-// Crear una instancia de la clase para ejecutar la operación
-
 

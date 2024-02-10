@@ -23,9 +23,11 @@ function registrar(){
 function ver_registros(){
 	var table = $('#datatable-buttons').DataTable();
 	table.destroy();
+
 	var result = function_ajax({
 		'op':'buscar'
-}	,'../controller/usuarioController.php');
+}	,'../controller/usuarioController.php').then(function(result){
+
 	$("#datos").html(result);
 	$('#datatable-buttons').DataTable( {
 		dom: 'Bfrtip',
@@ -33,6 +35,10 @@ function ver_registros(){
 			'copy', 'csv', 'excel', 'pdf', 'print'
 		]
 	});
+	}).catch(function(error) {console.log('Error:', error);});
+
+
+
 }
 
 function cambiar_estado(id, estado){
@@ -129,7 +135,7 @@ function alert_success(){
 
 function alert_warning(){
 	Swal.fire({
-		title: 'Error al registrar la categoria!',',
+		title: 'Error al registrar la categoria!',
 		text: 'Preciona el boton para aceptar!',
 		icon: 'warning',
 		confirmButtonColor: '#5664d2'
@@ -150,12 +156,18 @@ $("#form_2").on('submit', function(evt){
 });
 
 function function_ajax(data,url){
-	$.post({
-		type: 'POST',
-		url: url,
-		data: data,
-		success: function(response){
-			return response;
-		}
+	return new Promise(function(resolve, reject) {
+		$.post({
+			type: 'POST',
+			url: url,
+			data: data,
+			success: function(response){
+				resolve(response);
+			},
+			error: function(error) {
+				reject(error);
+			}
+		});
 	});
 }
+

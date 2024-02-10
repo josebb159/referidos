@@ -79,9 +79,8 @@ if(isset($_POST['usuario'])){
                    <tr>
                                                <td><?php echo $key['id']; ?></td>
                                                <td><?php echo $key['nombre']; ?></td>
-                                               <td><?php echo $key['apellido']; ?></td>
-                                               <td><?php echo $key['usuario']; ?></td>
-                                               <td><?php echo $key['rol']; ?></td>
+                                               <td><?php echo $key['email']; ?></td>
+                                  
                                                <td><?php echo $key['fecha_registro']; ?></td>
                                                <td>   
                                                      <?php include '../view/static/bt_estado.php';  ?>
@@ -92,10 +91,7 @@ if(isset($_POST['usuario'])){
                                                       Acciones
                                                          <i class="mdi mdi-chevron-down"></i>
                                                       </button>
-                                                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="margin: 0px;">
-                                                         <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#myModal" onclick="cargar_datos( '<?php echo $key['id']."','".$key['nombre']."','".$key['apellido']."','".$key['usuario']."','".$key['rol_id']."','".$key['contrasena']."'"; ?>)">Modificar</a>
-                                                         <a class="dropdown-item" href="#" onclick="eliminar(<?php echo $key['id']; ?>)">Eliminar</a>
-                                                      </div>
+                                                
                                                 </div>
                                                </td>
                                   
@@ -110,6 +106,21 @@ if(isset($_POST['usuario'])){
            }
                
           break;  
+          case 'buscar_select':
+
+            $n_usuario  = new usuario();
+            $resultado = $n_usuario -> buscar_usuarios_afiliado();
+        
+   
+            foreach ($resultado as $key) {
+
+               ?>
+               <option value="<?php echo $key['codigo']; ?>"><?php echo $key['email']; ?></option>
+               <?php
+
+           }
+               
+          break; 
           case 'cambiar_estado':
 
             $n_usuario  = new usuario();

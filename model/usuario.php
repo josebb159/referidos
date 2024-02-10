@@ -37,7 +37,27 @@ class usuario {
    
         $conexion = new Conexion();
     
-        $sql = "SELECT usuarios.id as id, rol.descripcion as rol, usuarios.nombre,  rol.id as rol_id, `apellido`, `usuario`, `contrasena`, usuarios.estado as estado, usuarios.fecha_registro FROM usuarios, rol WHERE rol.id=usuarios.id_rol; ";
+        $sql = "SELECT usuarios.* FROM usuarios, rol WHERE rol.id=usuarios.id_rol; ";
+        $reg = $conexion->prepare($sql);
+    
+        $reg->execute();
+        $consulta =$reg->fetchAll();
+      
+        if ($consulta) {
+    
+            return $consulta;
+    
+        }else{
+            return 0;
+        }
+    }
+
+
+    public function buscar_usuarios_afiliado(){
+   
+        $conexion = new Conexion();
+    
+        $sql = "SELECT afiliado.codigo, usuarios.email FROM usuarios, afiliado where usuarios.id=afiliado.id_usuarios; ";
         $reg = $conexion->prepare($sql);
     
         $reg->execute();
@@ -79,6 +99,27 @@ class usuario {
 
         $conexion = new Conexion();
 
+        $sql2 = "SELECT  usuarios.* , afiliado.codigo FROM usuarios,afiliado where usuarios.id=afiliado.id_usuarios and email='".$usuario."' and usuarios.estado=1";
+        
+        $reg2 = $conexion->prepare($sql2);
+
+        $reg2->execute();
+        $consulta2 =$reg2->fetchAll();
+        
+      
+        if ($consulta2) {
+            foreach ($consulta2 as $key) {
+                if($key['contrasena']=="" or $key['contrasena']==NULL){
+
+                    $sql3 = "UPDATE `usuarios` SET `contrasena`=:contrasena WHERE id=:id";
+                    $reg3 = $conexion->prepare($sql3);
+                
+                    $reg3->execute(array(':id' => $key['id'], ':contrasena' =>$contrasena));
+                
+
+                }
+            }
+        }
 
         $sql = "SELECT  usuarios.* , afiliado.codigo FROM usuarios,afiliado where usuarios.id=afiliado.id_usuarios and email='".$usuario."' and contrasena='".$contrasena."' and usuarios.estado=1";
         

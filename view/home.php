@@ -327,7 +327,7 @@ include "static/seguridad_sesion.php";
         </header>
 
         <!-- ========== Left Sidebar Start ========== -->
-        <div class="vertical-menu"   style="background-color: <?= $color_panel;  ?> !important; display: none">
+        <div class="vertical-menu"   style="background-color: <?= $color_panel;  ?> ">
 
             <div data-simplebar class="h-100">
 

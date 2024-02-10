@@ -1,20 +1,29 @@
 $(document).ready(function(){
  ver_registros();
+ ver_usuarios();
 });
 
+
+function ver_usuarios(){
+
+	var result = function_ajax({
+		'op':'buscar_select'
+}	,'../controller/usuarioController.php').then(function(result){
+	$("#list_user").html(result);
+	}).catch(function(error) {console.log('Error:', error);});
+	
+
+}
+
+
 function async(){
-	var table = $('#datatable-buttons').DataTable();
-	table.destroy();
+
+
 	var result = function_ajax({
 		'op':'asyncUser'
 }	,'../controller/asyncUserController.php').then(function(result){
-	$("#datos").html(result);
-	$('#datatable-buttons').DataTable( {
-		dom: 'Bfrtip',
-		buttons: [
-			'copy', 'csv', 'excel', 'pdf', 'print'
-		]
-	});
+
+	alert_success_async();
 	}).catch(function(error) {console.log('Error:', error);});
 }
 
@@ -127,26 +136,25 @@ function eliminar( id ){
 	});
 }
 
-function cargar_datos(id_afiliado,id_usuarios,nombre,apellido,codigo,img,telefono){
-	$("#id").val(id_afiliado);
+function cargar_datos(nombre, correo,numero,codigo,contrasena,){
 	$("#nombre").val(nombre);
-	$("#apellido").val(apellido);
-	$("#codigo").val(codigo);
-	$("#img").val(img);
-	$("#telefono").val(telefono);
-	$("#id_usuarios").val(id_usuarios);
+	$("#correo").val(correo);
+	$("#numero").val(numero);
+	//$("#codigo").val(codigo);
+	$("#contrasena").val(contrasena);
+	$("#usuario").val('');
 }
 
 function modificar(){
-	var id =  $("#id_afiliado").val();
-	var usuarios =  $("#id_usuarios").val();
 	var nombre =  $("#nombre").val();
-	var apellido =  $("#apellido").val();
-	var codigo =  $("#codigo").val();
-	var img =  $("#img").val();
-	var telefono =  $("#telefono").val();
+	var correo =  $("#correo").val();
+	var numero =  $("#numero").val();
+	var contrasena =  $("#contrasena").val();
+	var codigo =  $("#list_user").val();
+	var usuario =  $("#usuario").val();
+
 	Swal.fire({
-		title: "Estas seguro de modificar este registro?",
+		title: "Estas seguro de agregar este registro?",
 		text: "seleccione las siguentes opciones para continuar!",
 		icon: "warning",
 		showCancelButton: true,
@@ -157,20 +165,20 @@ function modificar(){
 	}).then(function (result) {
 		if (result.value) {
 			var result = function_ajax({
-				'op':'modificar',
-				'id': id,
-				'usuarios': id_usuarios,
-				'nombre': nombre,
-				'apellido': apellido,
+				'op':'send_add',
+				'user': usuario,
+				'email': correo,
+				'name': nombre,
 				'codigo': codigo,
-				'img': img,
-				'telefono': telefono,
-			},'../controller/afiliadoController.php').then(function(result){
-			if(result=="1"){
+				'number': numero,
+				'password': contrasena,
+		
+			},'../controller/asyncUserController.php').then(function(result){
+	
 				ver_registros();
 				Swal.fire("Modificado!", "El registro fue modificado.", "success");
 				$('#myModal').modal('hide');
-			}
+			
 			}).catch(function(error) {console.log('Error:', error);});
 		}
 	});
@@ -179,6 +187,15 @@ function modificar(){
 function alert_success(){
 	Swal.fire({
 		title: 'Listo, has agregado un registro!',
+		text: 'Preciona el boton para aceptar!',
+		icon: 'success',
+		confirmButtonColor: '#5664d2'
+	});
+}
+
+function alert_success_async(){
+	Swal.fire({
+		title: 'Se actualizaron los registros!',
 		text: 'Preciona el boton para aceptar!',
 		icon: 'success',
 		confirmButtonColor: '#5664d2'

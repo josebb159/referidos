@@ -29,12 +29,13 @@
 								<th>ID</th>
 								<th>Correo</th>
 								<th>Nombre</th>
+								<th>Option</th>
 							
 							<thead>
 							<tbody id="datos">
 							</tbody>
 						</table>
-						<input type="button" value="Async" onclic="async()">
+						<input type="button" value="Async" onclick="async()">
 					</div>
 				</div>
 			</div>
@@ -44,112 +45,34 @@
 
 
 
-<div class="col-sm-6 col-md-4 col-xl-3">
-	<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title mt-0" id="myModalLabel">Modificar afiliado</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<form class="needs-validation" id="form_2">
-					<input type="hidden" value="" id="id_afiliado">
-					<div class="modal-body">
-						<div class="row">
-							<div class="col-md-6">
-								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">nombre</label>
-									<input type="text" class="form-control" id="nombre" placeholder="nombre" value="" required>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">apellido</label>
-									<input type="text" class="form-control" id="apellido" placeholder="apellido" value="" required>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">codigo</label>
-									<input type="text" class="form-control" id="codigo" placeholder="codigo" value="" required>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">img</label>
-									<input type="text" class="form-control" id="img" placeholder="img" value="" required>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">telefono</label>
-									<input type="text" class="form-control" id="telefono" placeholder="telefono" value="" required>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">usuarios</label>
-									<input type="text" class="form-control" id="id_usuarios" placeholder="usuarios" value="" required>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Cerrar</button>
-						<button type="submit" class="btn btn-primary waves-effect waves-light" >Guardar</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
 <div class="col-sm-6 col-md-4 col-xl-3">
 	<div id="modal_agregar" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title mt-0" id="myModalLabel">Agregar afiliado</h5>
+					<h5 class="modal-title mt-0" id="myModalLabel">Asignar afiliado a </h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
-				<form class="needs-validation" id="form_1">
+				<form class="needs-validation" id="form_2">
 					<div class="modal-body">
 						<div class="row">
-							<div class="col-md-6">
-								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">nombre</label>
-									<input type="text" class="form-control" id="nombreagg" placeholder="nombre" value="" required>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">apellido</label>
-									<input type="text" class="form-control" id="apellidoagg" placeholder="apellido" value="" required>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">codigo</label>
-									<input type="text" class="form-control" id="codigoagg" placeholder="codigo" value="" required>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">img</label>
-									<input type="text" class="form-control" id="imgagg" placeholder="img" value="" required>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="mb-6">
-									<label for="validationCustom01" class="form-label">telefono</label>
-									<input type="text" class="form-control" id="telefonoagg" placeholder="telefono" value="" required>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="mb-6">
+							<div class="col-md-12">
+								<div class="mb-12">
+									<input type="text" name="nombre" id="nombre">
+									<input type="text" name="correo" id="correo">
+									<input type="text" name="numero" id="numero">
+									<input type="text" name="contrasena" id="contrasena">
+									<input type="text" name="usuario" id="usuario">
+
 									<label for="validationCustom01" class="form-label">usuarios</label>
-									<input type="text" class="form-control" id="id_usuariosagg" placeholder="usuarios" value="" required>
+									<select name="codigo" id="list_user" class="form-control">
+
+									</select>
+									
 								</div>
 							</div>
+							
+							
 						</div>
 					</div>
 					<div class="modal-footer">
