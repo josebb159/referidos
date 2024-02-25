@@ -31,7 +31,7 @@ class afiliado {
 	return 1;
 	}
 	public function buscar_afiliado(){
-		$sql = "SELECT  * FROM afiliado ";
+		$sql = "SELECT  *, (select email from usuarios,ramas where afiliado.id_usuarios = ramas.id_usuarios and usuarios.id=ramas.referido_padre) as padre FROM afiliado ";
 	$reg = $this->conexion->prepare($sql);
 	$reg->execute();
 	$consulta =$reg->fetchAll();

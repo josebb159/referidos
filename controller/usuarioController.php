@@ -79,8 +79,9 @@ if(isset($_POST['usuario'])){
                    <tr>
                                                <td><?php echo $key['id']; ?></td>
                                                <td><?php echo $key['nombre']; ?></td>
+                                               
                                                <td><?php echo $key['email']; ?></td>
-                                  
+                                               <td><button class="btn btn-light ms-0" type="button" data-toggle="tooltip" title="<?php echo $key['contrasena']; ?>"><i class="mdi mdi-eye-outline"></i></button></td>
                                                <td><?php echo $key['fecha_registro']; ?></td>
                                                <td>   
                                                      <?php include '../view/static/bt_estado.php';  ?>

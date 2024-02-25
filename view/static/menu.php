@@ -53,6 +53,12 @@ if(isset($_GET['view'])){
 		</a>
 	</li>
 	<li>
+		 <a href="home.php?view=transaccionesretiro" class=" waves-effect <?php if($valor=="transaccionesretiro"){ echo "active mm-active"; } ?>">
+			<i class="mdi mdi-swap-horizontal"></i>
+			<span>Transacciones Retiro</span>
+		</a>
+	</li>
+	<li>
 		 <a href="home.php?view=ramas" class=" waves-effect <?php if($valor=="ramas"){ echo "active mm-active"; } ?>">
 			<i class="mdi mdi-source-branch"></i>
 			<span>Red</span>

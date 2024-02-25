@@ -72,7 +72,7 @@ switch ($op) {
 			<td><?= $key['nombre']; ?></td>
 			<td><?= $key['apellido']; ?></td>
 			<td><?= $key['codigo']; ?></td>
-			<td><?= $key['img']; ?></td>
+			<td><?= $key['padre']; ?></td>
 			<td><?= $key['telefono']; ?></td>
 			<td><?php echo $st;  ?></td>
 			<td>

@@ -27,7 +27,7 @@ class transacciones {
 	$reg->execute(array(':estado' => $estado_defaul,':entrada' => 0,':salida' => 2,':valor' => $valor,':porcentaje' => 0,':id_usuarios' => $id_usuarios));
 	return 1;
 	}
-	public function buscar_transacciones(){$sql = "SELECT  * FROM transacciones ";
+	public function buscar_transacciones(){$sql = "SELECT *  FROM transacciones";
 	$reg = $this->conexion->prepare($sql);
 	$reg->execute();
 	$consulta =$reg->fetchAll();
@@ -36,6 +36,15 @@ class transacciones {
 	}else{
 		return 0;
 	} }
+	public function buscar_transacciones_por_pagar(){$sql = "SELECT  transacciones.valor, transacciones.id_transacciones, usuarios.email as email, usuarios.id as id_user FROM transacciones , usuarios where transacciones.id_usuarios=usuarios.id and salida=2 and transacciones.estado=2";
+		$reg = $this->conexion->prepare($sql);
+		$reg->execute();
+		$consulta =$reg->fetchAll();
+		if ($consulta) {
+			return $consulta;
+		}else{
+			return 0;
+		} }
 	public function buscar_transacciones_id($id){$sql = "SELECT  * FROM transacciones where id_usuarios=$id ";
 		$reg = $this->conexion->prepare($sql);
 		$reg->execute();
@@ -46,12 +55,22 @@ class transacciones {
 			return 0;
 		} }
 		
+		public function verifica_fondos($id){$sql = "SELECT  * FROM monedero where id_usuarios=$id ";
+			$reg = $this->conexion->prepare($sql);
+			$reg->execute();
+			$consulta =$reg->fetchAll();
+			if ($consulta) {
+				return $consulta;
+			}else{
+				return 0;
+			} }
+			
 	public function descontar($id, $id_transaccion, $valor){
 	    $sql = "UPDATE `monedero` SET valor=valor-:valor WHERE id_usuarios=:id";
 	    $reg = $this->conexion->prepare($sql);
 	    $reg->execute(array(':id' => $id, ':valor' => $valor));
 	    
-	    $sql = "UPDATE `transacciones` SET estado=1 WHERE id_transacciones=:id";
+	    $sql = "UPDATE `transacciones` SET estado=3 WHERE id_transacciones=:id";
 	    $reg = $this->conexion->prepare($sql);
 	    $reg->execute(array(':id' => $id_transaccion));
 	}

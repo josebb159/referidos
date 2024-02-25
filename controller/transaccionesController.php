@@ -120,6 +120,39 @@ switch ($op) {
 		<?php
 		}
 	break;
+	case 'buscar_por_pagar':
+		$n_transacciones  = new transacciones();
+		$resultado = $n_transacciones  -> buscar_transacciones_por_pagar();
+		if($resultado==0){
+			exit();
+		}
+		foreach ($resultado as $key) {
+	
+		$key['id']=$key['id_transacciones'];
+		?>
+		<tr>
+			<td><?= $key['id']; ?></td>
+			<td><?= $key['email']; ?></td>
+		
+			<td><?= $key['valor']; ?> USD</td>
+	
+			<td>
+			    
+				<div class="dropdown">
+					<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Acciones
+						<i class="mdi mdi-chevron-down"></i>
+						</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="margin: 0px;">
+							<a class="dropdown-item" href="#"   onclick="pagar(<?php echo "'".$key['id_transacciones']."','".$key['id_user']."','".$key['valor']."'"; ?>)">Pagar</a>
+							<a class="dropdown-item" href="#" onclick="eliminar(<?php echo $key['id_transacciones']; ?>)">Cancelar</a>
+						</div>
+					</div>
+			</td>
+		</tr>
+		<?php
+		}
+	break;
 	case 'buscar_id':
 		$n_transacciones  = new transacciones();
 		session_start();
@@ -155,10 +188,24 @@ switch ($op) {
 		}
 	break;
 	case 'descuenta':
+
+
 		$n_transacciones  = new transacciones();
+		$users = $n_transacciones  -> verifica_fondos($id_usuarios,$id,$valor);
+		foreach($users as $user){
+
+			if($user['valor']>$valor){
+				$resultado = $n_transacciones  -> descontar($id_usuarios,$id,$valor);
+				echo 1;
+			}else{
+				echo 2;
+			}
 		
-		$resultado = $n_transacciones  -> descontar($id_usuarios,$id,$valor);
-		echo 1;
+
+		}
+		
+	
+	
 	break;
 	case 'retirar':
 		$n_transacciones  = new transacciones();

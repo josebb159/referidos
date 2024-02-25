@@ -325,9 +325,22 @@ include "static/seguridad_sesion.php";
                 </div>
             </div>
         </header>
+        <?php
+        $showMenu="; display:none";
+        if(isset($_SESSION['rol'])){
+            $rol = $_SESSION['rol'];
+        }else{
+            $rol = "";
+        }
+
+        if($rol=="administrador"){
+                  $showMenu="";
+        }
+        
+        ?>
 
         <!-- ========== Left Sidebar Start ========== -->
-        <div class="vertical-menu"   style="background-color: <?= $color_panel;  ?> ">
+        <div class="vertical-menu"   style="background-color: <?= $color_panel;  ?><?= $showMenu; ?>">
 
             <div data-simplebar class="h-100">
 

@@ -30,7 +30,7 @@
 								<th>Nombre</th>
 								<th>Apellido</th>
 								<th>Codigo</th>
-								<th>Img</th>
+								<th>Padre</th>
 								<th>Telefono</th>
 								<th>Estado</th>
 								<th>Opciones</th>

@@ -32,6 +32,9 @@ if(isset($_GET['view'])){
 	if($_GET['view']=="transacciones"){
 		echo "<script src='../assets/js/functions/administrador/transacciones.js'></script>";
 	}
+	if($_GET['view']=="transaccionesretiro"){
+		echo "<script src='../assets/js/functions/administrador/transaccionesretiro.js'></script>";
+	}
 	if($_GET['view']=="ramas"){
 		echo "<script src='../assets/js/functions/administrador/ramas.js'></script>";
 	}

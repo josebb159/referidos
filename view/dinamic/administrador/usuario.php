@@ -43,7 +43,7 @@
                                     <th>NOMBRE</th>
                                 
                                     <th>USUARIO</th>
-                               
+                                    <th>PW</th>
                                     <th>FECHA REGISTRO</th>
                                     <th>ESTADO</th>
                                     <th>OPCIONES</th>

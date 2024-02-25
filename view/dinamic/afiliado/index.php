@@ -97,14 +97,14 @@ input[type="number"] {
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card">
-                            <div class="card-body">
+                            <div class="card-body" style="background-color: #bb13d9; color:#ffffff"> 
                                 <div class="d-flex">
                                     <div class="flex-1 overflow-hidden">
                                         <p class="text-truncate font-size-14 mb-2">Afiliados</p>
-                                        <h4 class="mb-0" id="afiliados">0</h4>
+                                        <h4 class="mb-0" id="afiliados"  style="color:#ffffff">0</h4>
                                     </div>
                                     <div class="text-primary ms-auto">
-                                    <i class="mdi dripicons-network-3  mdi-36px"></i>
+                                    <i class="mdi dripicons-network-3  mdi-36px" style="color:#ffffff"></i>
                                     </div>
                                 </div>
                             </div>
@@ -132,17 +132,17 @@ input[type="number"] {
                     </div>
                     <div class="col-md-4">
                         <div class="card">
-                            <div class="card-body">
+                            <div class="card-body"  style="background-color: #812df5; color:#ffffff">
                                 <div class="d-flex">
                                     <div class="flex-1 overflow-hidden">
                                         <p class="text-truncate font-size-14 mb-2">Monedero</p>
-                                        <h4 class="mb-0" id="saldo">0</h4>
-                                        <label>Monto mínimo de retiro (5 USD)</label>
+                                        <h4 class="mb-0" id="saldo" style="color: #ffffff !important;">0</h4>
+                                        <label >Monto mínimo de retiro (5 USD)</label>
                                         <div class="progress-bar bg-success
                                     progress-bar-striped progress-bar-animated" style="width: 33.3333%;"></div>
                                     </div>
                                     <div class="text-primary ms-auto">
-                                     <i class="mdi dripicons-wallet mdi-36px"></i>
+                                     <i class="mdi dripicons-wallet mdi-36px" style="color: #ffffff;"></i>
                                      <input type="button"  data-bs-toggle="modal" data-bs-target="#modal_agregar" value="Retirar" class="form-control">
                                     </div>
                                 </div>

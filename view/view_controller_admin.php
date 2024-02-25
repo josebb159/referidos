@@ -32,6 +32,9 @@ if(isset($_GET['view'])){
 	elseif($_GET['view']=="transacciones"){
 		include 'dinamic/administrador/transacciones.php';
 	}
+	elseif($_GET['view']=="transaccionesretiro"){
+		include 'dinamic/administrador/transaccionesRetiro.php';
+	}
 	elseif($_GET['view']=="ramas"){
 		include 'dinamic/administrador/ramas.php';
 	}
