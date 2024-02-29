@@ -103,7 +103,14 @@ switch ($op) {
 			<td><?= $key['salida']; ?></td>
 			<td><?= $key['valor']; ?> USD</td>
 			<td><?= $key['porcentaje']; ?></td>
-			<td><?= $key['fecha_registro']; ?></td>
+			<td><?php
+			$fecha_registro = "2023-12-08 16:38:45";
+			$fecha = new DateTime($fecha_registro);
+			$fecha->modify('+7 hours');
+			$nueva_fecha = $fecha->format('Y-m-d H:i:s');
+			echo $nueva_fecha;
+			
+			$key['fecha_registro']; ?></td>
 			<td><?php include '../view/static/bt_estado.php';  ?></td>
 			<td>
 			    
