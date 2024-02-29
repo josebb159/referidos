@@ -1,6 +1,7 @@
 <?php
 ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/tmp'));
 include '../model/monedero.php';
+include '../model/afiliado.php';
 
 if(isset($_POST['id'])){
 	$id =  $_POST['id'];
@@ -47,6 +48,7 @@ switch ($op) {
 		?>
 		<tr>
 			<td><?= $key['id_monedero']; ?></td>
+			<td><?= $key['email']; ?></td>
 			<td><?= $key['valor']; ?></td>
 			<td><?php include '../view/static/bt_estado.php';  ?></td>
 			<td>
@@ -56,8 +58,7 @@ switch ($op) {
 						<i class="mdi mdi-chevron-down"></i>
 						</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="margin: 0px;">
-							<a class="dropdown-item" href="#"  data-bs-toggle="modal" data-bs-target="#myModal" onclick="cargar_datos(<?php echo "'".$key['id_monedero']."','".$key['valor']."'"; ?>)">Modificar</a>
-							<a class="dropdown-item" href="#" onclick="eliminar(<?php echo $key['id_monedero']; ?>)">Eliminar</a>
+							<a class="dropdown-item" href="#" onclick="renovar(<?php echo $key['id_usuarios']; ?>)">Renovar</a>
 						</div>
 					</div>
 			</td>
@@ -92,7 +93,7 @@ switch ($op) {
 						</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="margin: 0px;">
 							<a class="dropdown-item" href="#"  data-bs-toggle="modal" data-bs-target="#myModal" onclick="cargar_datos(<?php echo "'".$key['id_monedero']."','".$key['valor']."'"; ?>)">Modificar</a>
-							<a class="dropdown-item" href="#" onclick="eliminar(<?php echo $key['id_monedero']; ?>)">Eliminar</a>
+							<a class="dropdown-item" href="#" onclick="renovar(<?php echo $key['id_monedero']; ?>)">renovar</a>
 						</div>
 					</div>
 			</td>
@@ -132,6 +133,10 @@ switch ($op) {
 	case 'estadistica':
 		$n_monedero  = new monedero();
 		$resultado = $n_monedero  -> estadistica($id,$valor,$estado);
+	break;
+	case 'renovar':
+		$n_monedero  = new afiliado();
+		$n_monedero->validar_afiliado($id);
 	break;
 	default:
 	break;

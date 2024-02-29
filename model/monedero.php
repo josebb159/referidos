@@ -17,7 +17,7 @@ class monedero {
 	$reg->execute(array(':estado' => $estado_defaul,':valor' => $valor,':id_usuarios' => $id_usuarios));
 	return 1;
 	}
-	public function buscar_monedero(){$sql = "SELECT  * FROM monedero ";
+	public function buscar_monedero(){$sql = "SELECT  monedero.*, usuarios.email FROM monedero, usuarios where usuarios.id=monedero.id_usuarios ";
 	$reg = $this->conexion->prepare($sql);
 	$reg->execute();
 	$consulta =$reg->fetchAll();

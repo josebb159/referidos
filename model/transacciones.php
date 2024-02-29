@@ -27,7 +27,7 @@ class transacciones {
 	$reg->execute(array(':estado' => $estado_defaul,':entrada' => 0,':salida' => 2,':valor' => $valor,':porcentaje' => 0,':id_usuarios' => $id_usuarios));
 	return 1;
 	}
-	public function buscar_transacciones(){$sql = "SELECT *  FROM transacciones";
+	public function buscar_transacciones(){$sql = "SELECT transacciones.*, usuarios.email  FROM transacciones, usuarios where transacciones.id_usuarios=usuarios.id";
 	$reg = $this->conexion->prepare($sql);
 	$reg->execute();
 	$consulta =$reg->fetchAll();

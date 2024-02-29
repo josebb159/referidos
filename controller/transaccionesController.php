@@ -98,10 +98,12 @@ switch ($op) {
 		?>
 		<tr>
 			<td><?= $key['id_transacciones']; ?></td>
+			<td><?= $key['email']; ?></td>
 			<td><?= $key['entrada']; ?></td>
 			<td><?= $key['salida']; ?></td>
 			<td><?= $key['valor']; ?> USD</td>
 			<td><?= $key['porcentaje']; ?></td>
+			<td><?= $key['fecha_registro']; ?></td>
 			<td><?php include '../view/static/bt_estado.php';  ?></td>
 			<td>
 			    

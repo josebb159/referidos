@@ -51,25 +51,26 @@ function cambiar_estado(id, estado){
 	}).catch(function(error) {console.log('Error:', error);});
 }
 
-function eliminar( id ){
+function renovar( id ){
 	Swal.fire({
-		title: "Estas seguro de eliminar este registro?",
+		title: "Estas seguro de renovar este registro?",
 		text: "seleccione las siguentes opciones para continuar!",
 		icon: "warning",
 		showCancelButton: true,
 		confirmButtonColor: "#1cbb8c",
 		cancelButtonColor: "#ff3d60",
-		confirmButtonText: "Si, deseo eliminar",
+		confirmButtonText: "Si, deseo renovar",
 		cancelButtonText: "Cancelar"
 	}).then(function (result) {
 		if (result.value) {
 			var result = function_ajax({
-				'op':'eliminar',
+				'op':'renovar',
 				'id': id
 }			,'../controller/monederoController.php').then(function(result){
 			if(result=="1"){
+				alert(result);
 				ver_registros();
-				Swal.fire("Eliminado!", "La registro fue eliminado.", "success");
+				Swal.fire("Renovado!", "El usuario fue renovado.", "success");
 			}
 			}).catch(function(error) {console.log('Error:', error);});
 		}

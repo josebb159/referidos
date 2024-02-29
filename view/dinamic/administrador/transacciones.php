@@ -27,10 +27,12 @@
 						<table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 							<thead>
 								<th>ID</th>
+								<th>Usuario</th>
 								<th>Entrada</th>
 								<th>Salida</th>
 								<th>Valor</th>
 								<th>Porcentaje</th>
+								<th>Fecha</th>
 								<th>Estado</th>
 								<th>Opciones</th>
 							<thead>
