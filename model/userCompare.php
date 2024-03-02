@@ -25,6 +25,13 @@ $sql = "SELECT id, correo, nombre FROM user_compare WHERE user_compare.estado=1 
 	    $reg->execute(array(':email' => $email));
 	    
 	}
+
+	public function eliminar($id){
+		$sql = "UPDATE `user_compare` SET estado=2 WHERE id=:id";
+	    $reg = $this->conexion->prepare($sql);
+	    $reg->execute(array(':id' => $id));
+	    
+	}
 		
 
 }

@@ -10,13 +10,13 @@ if($rol=="Usuario Nivel 1"){
 
     include 'menu_usuario1.php';
 
-}elseif($rol=="Usuario Nivel 2"){
+}elseif($rol=="subadm2"){
     
-    include 'menu_usuario2.php';
+    include 'menu_sub2.php';
 
-}elseif($rol=="Usuario Nivel 3"){
+}elseif($rol=="subadm1"){
 
-    include 'menu_usuario3.php';
+    include 'menu_sub1.php';
 
 }elseif($rol=="afiliado"){
 

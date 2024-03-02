@@ -231,7 +231,7 @@ input[type="number"] {
             
             
             
-                 <div class="row">
+                 <div class="row" style="display: none;">
             <div class="col-xl-5">
                 <!-- card -->
                 <div class="card card-h-100">

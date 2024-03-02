@@ -41,6 +41,9 @@ if(isset($_GET['view'])){
 		elseif($_GET['view']=="async"){
 		include 'dinamic/administrador/async.php';
 	}
+	elseif($_GET['view']=="info_afiliado"){
+		include 'dinamic/administrador/info_afiliado.php';
+	}
 /*construir*/
 
     elseif($_GET['view']=="logout"){

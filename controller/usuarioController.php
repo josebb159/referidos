@@ -32,6 +32,10 @@ if(isset($_POST['usuario'])){
     $estado =  $_POST['estado'];
  }
 
+ if(isset($_POST['rol'])){
+   $rol =  $_POST['rol'];
+}
+
  if(isset($_POST['op'])){
     $op =  $_POST['op'];
  }
@@ -41,7 +45,7 @@ if(isset($_POST['usuario'])){
  switch ($op) {
      case 'login':
        $n_usuario  = new usuario();
-
+  
 
         $resultado = $n_usuario -> login( $usuario, $contrasena);
          if($resultado ==TRUE){
@@ -107,6 +111,52 @@ if(isset($_POST['usuario'])){
            }
                
           break;  
+          case 'buscar_system':
+
+            $n_usuario  = new usuario();
+            $resultado = $n_usuario -> buscar_usuarios_system();
+        
+   
+            foreach ($resultado as $key) {
+               if($key['estado']=="1"){
+                  $st = " checked";
+               }else{
+                  $st = "";
+               }
+   
+               ?>
+                   <tr>
+                                               <td><?php echo $key['id']; ?></td>
+                                               <td><?php echo $key['nombre']; ?></td>
+                                               <td><?php echo $key['rol']; ?></td>
+                                               
+                                               <td><?php echo $key['email']; ?></td>
+                                               <td><button class="btn btn-light ms-0" type="button" data-toggle="tooltip" title="<?php echo $key['contrasena']; ?>"><i class="mdi mdi-eye-outline"></i></button></td>
+                                               <td><?php echo $key['fecha_registro']; ?></td>
+                                               <td>   
+                                                     <?php include '../view/static/bt_estado.php';  ?>
+                                               </td>
+                                               <td>
+                                               <div class="dropdown">
+                                                      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                      Acciones
+                                                         <i class="mdi mdi-chevron-down"></i>
+                                                      </button>
+                                                
+                                                </div>
+                                               </td>
+                                  
+                   </tr>
+   
+   
+               <?php
+   
+    
+         
+   
+           }
+               
+          break;  
           case 'buscar_select':
 
             $n_usuario  = new usuario();
@@ -122,6 +172,22 @@ if(isset($_POST['usuario'])){
            }
                
           break; 
+          case 'get_rol':
+
+            $n_usuario  = new usuario();
+            $resultado = $n_usuario -> get_rol();
+        
+   
+            foreach ($resultado as $key) {
+
+               ?>
+               <option value="<?php echo $key['id']; ?>"><?php echo $key['nombre']; ?></option>
+               <?php
+
+           }
+               
+          break; 
+          
           case 'cambiar_estado':
 
             $n_usuario  = new usuario();

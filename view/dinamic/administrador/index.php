@@ -1,3 +1,12 @@
+<?php
+include '../model/transacciones.php';
+include '../model/usuario.php';
+include '../model/monedero.php';
+$transacciones = new transacciones;
+$monedero = new monedero;
+$usuario = new usuario();
+
+?>
 <!-- jquery.vectormap css -->
 <link href="../assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet"
     type="text/css" />
@@ -39,7 +48,7 @@
                                 <div class="d-flex">
                                     <div class="flex-1 overflow-hidden">
                                         <p class="text-truncate font-size-14 mb-2">Afiliados</p>
-                                        <h4 class="mb-0" id="comercios">0</h4>
+                                        <h4 class="mb-0" id="comercios"><?= $usuario->total_afiliados(); ?></h4>
                                     </div>
                                     <div class="text-primary ms-auto">
                                         <i class="ri-store-2-line font-size-24"></i>

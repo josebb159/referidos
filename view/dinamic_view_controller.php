@@ -22,7 +22,17 @@ if($rol=="Usuario Nivel 1"){
 
     include 'view_controller_afiliado.php';
 
-}elseif($rol=="administrador"){
+}elseif($rol=="subadm1"){
+
+    include 'view_controller_admin.php';
+
+}
+elseif($rol=="subadm2"){
+
+    include 'view_controller_admin.php';
+
+}
+elseif($rol=="administrador"){
 
     include 'view_controller_admin.php';
 

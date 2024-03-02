@@ -2,6 +2,17 @@
 ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/tmp'));
 session_start(); 
 include "static/seguridad_sesion.php";
+$showMenu="; display:none";
+if(isset($_SESSION['rol'])){
+    $rol = $_SESSION['rol'];
+}else{
+    $rol = "";
+}
+
+if($rol=="administrador" || $rol=="subadm1" || $rol=="subadm2" ){
+          $showMenu="";
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,13 +55,13 @@ include "static/seguridad_sesion.php";
             <div class="navbar-header">
                 <div class="d-flex">
                     <!-- LOGO -->
-                    <div class="navbar-brand-box"  style="background-color: <?= $color_panel;  ?> !important;">
+                    <div class="navbar-brand-box"  style="background-color: <?= ($rol == "administrador") ? $color_panel : "white";  ?> !important;">
                         <a href="home.php?" class="logo logo-dark">
                             <span class="logo-sm">
-                                <img src="../assets/images/logo-sm-dark.png" alt="logo-sm-dark" height="22">
+                                <img src="../assets/images/logo.png" alt="logo-sm-dark" height="22">
                             </span>
                             <span class="logo-lg">
-                                <img src="../assets/images/logo-dark.png" alt="logo-dark" height="20">
+                                <img src="../assets/images/logo.png" alt="logo-dark" height="20">
                             </span>
                         </a>
 
@@ -59,7 +70,7 @@ include "static/seguridad_sesion.php";
                                 <img src="../assets/images/logo.svg" alt="logo-sm-light" height="20">
                             </span>
                             <span class="logo-lg">
-                                <img src="../assets/images/logo.svg" alt="logo-light" height="40">
+                                <img src="../assets/images/logo.png" alt="logo-light" height="50">
                             </span>
                         </a>
                     </div>
@@ -326,17 +337,7 @@ include "static/seguridad_sesion.php";
             </div>
         </header>
         <?php
-        $showMenu="; display:none";
-        if(isset($_SESSION['rol'])){
-            $rol = $_SESSION['rol'];
-        }else{
-            $rol = "";
-        }
-
-        if($rol=="administrador"){
-                  $showMenu="";
-        }
-        
+   
         ?>
 
         <!-- ========== Left Sidebar Start ========== -->

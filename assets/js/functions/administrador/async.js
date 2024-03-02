@@ -124,9 +124,9 @@ function eliminar( id ){
 	}).then(function (result) {
 		if (result.value) {
 			var result = function_ajax({
-				'op':'eliminar',
+				'op':'cambiar_estado',
 				'id': id
-}			,'../controller/afiliadoController.php').then(function(result){
+}			,'../controller/asyncUserController.php').then(function(result){
 			if(result=="1"){
 				ver_registros();
 				Swal.fire("Eliminado!", "La registro fue eliminado.", "success");
@@ -136,7 +136,7 @@ function eliminar( id ){
 	});
 }
 
-function cargar_datos(nombre, correo,numero,codigo,contrasena,){
+function cargar_datos(nombre, correo,numero,codigo,contrasena){
 	$("#nombre").val(nombre);
 	$("#correo").val(correo);
 	$("#numero").val(numero);

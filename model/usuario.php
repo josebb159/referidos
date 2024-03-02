@@ -23,10 +23,10 @@ class usuario {
         $conexion = new Conexion();
         $estado_defaul = 1;
     
-        $sql = "INSERT INTO `usuarios`(`id_rol`, `nombre`, `apellido`, `usuario`,  `contrasena`, `estado`) VALUES (:rol,:nombre,:apellido,:usuario,:contrasena,:estado)";
+        $sql = "INSERT INTO `usuarios`(`id_rol`, `nombre`,  `email`,  `contrasena`, `estado`) VALUES (:rol,:nombre,:email,:contrasena,:estado)";
         $reg = $conexion->prepare($sql);
     
-        $reg->execute(array(':rol' => $rol, ':nombre' => $nombre, ':apellido' => $apellido, ':usuario' => $usuario,  ':contrasena' => $contrasena, ':estado' => $estado_defaul));
+        $reg->execute(array(':rol' => $rol, ':nombre' => $nombre,  ':email' => $usuario,  ':contrasena' => $contrasena, ':estado' => $estado_defaul));
      
         return 1;
     
@@ -52,6 +52,26 @@ class usuario {
         }
     }
 
+    public function buscar_usuarios_system(){
+   
+        $conexion = new Conexion();
+    
+        $sql = "SELECT usuarios.*, rol.nombre as rol FROM usuarios, rol WHERE rol.id=usuarios.id_rol and rol.id!=2";
+        $reg = $conexion->prepare($sql);
+    
+        $reg->execute();
+        $consulta =$reg->fetchAll();
+      
+        if ($consulta) {
+    
+            return $consulta;
+    
+        }else{
+            return 0;
+        }
+    }
+
+
 
     public function buscar_usuarios_afiliado(){
    
@@ -71,6 +91,27 @@ class usuario {
             return 0;
         }
     }
+
+
+    public function get_rol(){
+   
+        $conexion = new Conexion();
+    
+        $sql = "SELECT * FROM `rol`";
+        $reg = $conexion->prepare($sql);
+    
+        $reg->execute();
+        $consulta =$reg->fetchAll();
+      
+        if ($consulta) {
+    
+            return $consulta;
+    
+        }else{
+            return 0;
+        }
+    }
+    
     
         public function buscar_contrasena($email){
    
@@ -100,7 +141,7 @@ class usuario {
         $conexion = new Conexion();
 
         $sql2 = "SELECT  usuarios.* , afiliado.codigo FROM usuarios,afiliado where usuarios.id=afiliado.id_usuarios and email='".$usuario."' and usuarios.estado=1";
-        
+
         $reg2 = $conexion->prepare($sql2);
 
         $reg2->execute();
@@ -141,8 +182,31 @@ class usuario {
             }
             
             return true;
-        }else{
-            return false;
+        }
+        else{
+           
+            $sql = "SELECT  usuarios.*  FROM usuarios where  email='".$usuario."' and contrasena='".$contrasena."' and usuarios.estado=1";
+        
+            $reg = $conexion->prepare($sql);
+    
+            $reg->execute();
+            $consulta =$reg->fetchAll();
+            
+          
+            if ($consulta) {
+                foreach ($consulta as $key) {
+            
+                    $_SESSION['nombre'] =  $key['nombre'];
+               
+                    $_SESSION['id_usuario'] =  $key['id'];
+                    $_SESSION['codigo'] = "system"; //$key['codigo'];
+                    $this->rol = $key['id_rol'];
+                }
+                
+                return true;
+            }else{
+                return false;
+            }
         }
                         
     }
@@ -230,12 +294,33 @@ public function buscar_usuario_json($id){
 
 }
 
+public function total_afiliados(){
+   
+    $conexion = new Conexion();
 
+    $sql = "SELECT  count(id) as total FROM usuarios";
+    $reg = $conexion->prepare($sql);
+
+
+    $reg->execute();
+    $consulta =$reg->fetchAll();
+    $total = 0;
+    if ($consulta) {
+            foreach ($consulta as $key) {
+
+                $total=  $key['total'];
     
+            }
+            
+    
+        }
+        return $total;
+}
 
 
 
 
 }
+
 
 ?>

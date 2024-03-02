@@ -3,6 +3,10 @@
 ini_set('session.save_path',realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/tmp'));
 include '../model/userCompare.php';
 
+if(isset($_POST['id'])){
+	$id =  $_POST['id'];
+}
+
 if(isset($_POST['op'])){
 	$op =  $_POST['op'];
 }
@@ -35,7 +39,8 @@ switch ($op) {
 			<td><?= $key['id']; ?></td>
 			<td><?= $key['correo']; ?></td>
 			<td><?= $key['nombre']; ?></td>
-            <td><input type="button" value="agregar"  type="button"  class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#modal_agregar" onclick="cargar_datos(<?php echo $data; ?>)"></td>
+            <td><input type="button" value="agregar"  type="button"  class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#modal_agregar" onclick="cargar_datos(<?php echo $data; ?>)">
+            <input type="button" value="eliminar"  type="button"  class="btn btn-danger waves-effect waves-light" data-bs-toggle="modal" onclick="eliminar(<?php echo $key['id']; ?>)"></td>
 		</tr>
 		<?php
 		}
@@ -43,8 +48,9 @@ switch ($op) {
 
 	break; 
 	case 'cambiar_estado':
-		$n_afiliado  = new afiliado();
-		$resultado = $n_afiliado  -> cambiar_estado_afiliado($id, $estado);
+        $estado=2;
+		$n_afiliado  = new userCompare();
+		$resultado = $n_afiliado  -> eliminar($id, $estado);
 		echo 1;
 	break;
     case 'send_add':

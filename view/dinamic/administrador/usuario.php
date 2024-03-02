@@ -41,7 +41,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>NOMBRE</th>
-                                
+                                    <th>ROL</th>
                                     <th>USUARIO</th>
                                     <th>PW</th>
                                     <th>FECHA REGISTRO</th>
@@ -75,103 +75,6 @@
 </div>
 <!-- End Page-content -->
 
-
-
-
-<div class="col-sm-6 col-md-4 col-xl-3">
-                          
-
-                                <!-- sample modal content -->
-                                <div id="myModal" class="modal fade" tabindex="-1" role="dialog"
-                                    aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title mt-0" id="myModalLabel">Modificar usuario</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <form class="needs-validation" id="form_2">
-                                            <div class="modal-body">
-                                            
-                                            <div class="row">
-                                                              <div class="col-md-6">
-                                                                  <div class="mb-6">
-                                                                      <input type="hidden" value="" id="id_usuario">
-                                                                      <label for="validationCustom01" class="form-label">Nombre del usuario</label>
-                                                                      <input type="text" class="form-control" id="nombre"
-                                                                          placeholder="Nombre del usuario" value="" required>
-                                                          
-                                                                  </div>
-                                                              </div>
-                                                              <div class="col-md-6">
-                                                                  <div class="mb-6">
-                                                                      <label for="validationCustom02" class="form-label">Apellido</label>
-                                                                      <input type="text" class="form-control" id="apellido"
-                                                                          placeholder="Apellido" value="" required>
-                                                              
-                                                                  </div>
-                                                              </div>
-                                                              </div>
-                                                              <div class="row">
-                                                         
-                                                              <div class="col-md-6">
-                                                                  <div class="mb-6">
-                                                                      <label for="validationCustom02" class="form-label">Usuario</label>
-                                                                      <input type="text" class="form-control" id="usuario"
-                                                                          placeholder="Usuario" value="" required>
-                                                              
-                                                                  </div>
-                                                              </div>
-
-                                                              <div class="col-md-6">
-                                                                  <div class="mb-6">
-                                                                      <label for="validationCustom02" class="form-label">Contraseña</label>
-                                                                      <input type="text" class="form-control" id="contrasena"
-                                                                          placeholder="contrasena" value="" required>
-                                                              
-                                                                  </div>
-                                                              </div>
-                                                          </div>
-
-                                                          <div class="row">
-                                                        
-                                                            
-                                                          </div>
-
-                                                          <div class="row">
-                                                              <div class="col-md-12">
-                                                                  <div class="mb-12">
-                                                                      <label for="validationCustom02" class="form-label">Rol</label>
-                                                                     
-                                                                      <select name="" class="form-control" id="rol">
-                                                                                  
-
-                                                                      </select>
-                                                              
-                                                                  </div>
-                                                              </div>
-                                                            
-                                                          </div>
-                                                      
-                                                      
-                                                      
-                                                            
-                                                               
-                                                           
-                                                
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-light waves-effect"
-                                                    data-bs-dismiss="modal">Cerrar</button>
-                                                <button type="submit"
-                                                    class="btn btn-primary waves-effect waves-light" >Guardar</button>
-                                            </div>
-                                            </form>
-                                        </div><!-- /.modal-content -->
-                                    </div><!-- /.modal-dialog -->
-                                </div><!-- /.modal -->
-                            </div>
 
 
 
@@ -242,7 +145,7 @@
                                                                   <div class="mb-12">
                                                                       <label for="validationCustom02" class="form-label">Rol</label>
                                                                      
-                                                                      <select name="" class="form-control" id="rolagg">
+                                                                      <select name="" class="form-control" id="rols">
 
 
                                                                       </select>

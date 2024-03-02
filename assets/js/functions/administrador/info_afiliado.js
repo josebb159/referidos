@@ -1,27 +1,23 @@
 $(document).ready(function(){
 	ver_registros();
-	cargar_roles();
 });
-
 
 function registrar(){
 	var result = function_ajax({
 		'op':'registrar',
-		'nombre': $("#nombreagg").val(),
-		'apellido': $("#apellidoagg").val(),
-		'usuario': $("#usuarioagg").val(),
-		'contrasena': $("#contrasenaagg").val(),
-		'rol': $("#rols").val(),
+		'nombre': $("#nombre").val(),
+		'apellido': $("#apellido").val(),
+		'usuario': $("#usuario").val(),
+		'contrasena': $("#contrasena").val(),
 		'estado':'1'
 }	,'../controller/usuarioController.php');
-	
-		ver_registros();
+	if(result=="1"){
 		alert_success();
-		$("#nombreagg").val("");
-		$("#apellidoagg").val("");
-		$("#usuarioagg").val("");
-		$("#contrasenaagg").val("");
-	
+		$("#nombre").val("");
+		$("#apellido").val("");
+		$("#usuario").val("");
+		$("#contrasena").val("");
+	}
 }
 
 function ver_registros(){
@@ -29,7 +25,7 @@ function ver_registros(){
 	table.destroy();
 
 	var result = function_ajax({
-		'op':'buscar_system'
+		'op':'buscar'
 }	,'../controller/usuarioController.php').then(function(result){
 
 	$("#datos").html(result);
@@ -44,20 +40,6 @@ function ver_registros(){
 
 
 }
-function cargar_roles(){
-
-	var result = function_ajax({
-		'op':'get_rol'
-}	,'../controller/usuarioController.php').then(function(result){
-
-	$("#rols").html(result);
-
-	}).catch(function(error) {console.log('Error:', error);});
-
-
-
-}
-
 
 function cambiar_estado(id, estado){
 	if(estado==1){
@@ -165,7 +147,7 @@ $('#sa-warning').click(function () {
 
 $("#form_1").on('submit', function(evt){
 	evt.preventDefault();  
-	registrar();
+	modificar();
 });
 
 $("#form_2").on('submit', function(evt){

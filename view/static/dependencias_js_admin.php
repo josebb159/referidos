@@ -44,6 +44,9 @@ if(isset($_GET['view'])){
 	if($_GET['view']=="usuarios"){
 		echo "<script src='../assets/js/functions/administrador/usuario.js'></script>";
 	}
+	if($_GET['view']=="info_afiliado"){
+		echo "<script src='../assets/js/functions/administrador/info_afiliado.js'></script>";
+	}
 /*construir*/
     
     

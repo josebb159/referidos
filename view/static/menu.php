@@ -33,6 +33,12 @@ if(isset($_GET['view'])){
        </a>
    </li>
 
+   <li>
+       <a href="home.php?view=info_afiliado" class=" waves-effect <?php if($valor=="info_afiliado"){ echo "active mm-active"; } ?>">
+           <i class="mdi mdi-account"></i>
+           <span>Info afiliado</span>
+       </a>
+   </li>
 
 	<li>
 		 <a href="home.php?view=afiliado" class=" waves-effect <?php if($valor=="afiliado"){ echo "active mm-active"; } ?>">

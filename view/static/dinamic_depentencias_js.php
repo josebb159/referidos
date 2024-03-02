@@ -11,6 +11,14 @@ if($rol=="administrador"){
 
     include 'dependencias_js_admin.php';
 
+}if($rol=="subadm1"){
+
+    include 'dependencias_js_admin.php';
+
+}if($rol=="subadm2"){
+
+    include 'dependencias_js_admin.php';
+
 }elseif($rol=="afiliado"){
     include 'dependencias_js_afiliado.php';
 }elseif($rol=="Usuario Nivel 2"){
