@@ -36,6 +36,24 @@ class transacciones {
 	}else{
 		return 0;
 	} }
+	public function get_count_transaccion(){$sql = "SELECT  count(id_transacciones) as total FROM transacciones";
+		$reg = $this->conexion->prepare($sql);
+		$reg->execute();
+		$consulta =$reg->fetchAll();
+		if ($consulta) {
+			return $consulta[0]['total'];
+		}else{
+			return 0;
+		} }
+	public function get_total_transaccion(){$sql = "SELECT  sum(valor) as total FROM transacciones";
+			$reg = $this->conexion->prepare($sql);
+			$reg->execute();
+			$consulta =$reg->fetchAll();
+			if ($consulta) {
+				return $consulta[0]['total'];
+			}else{
+				return 0;
+		} }
 	public function buscar_transacciones_por_pagar(){$sql = "SELECT  transacciones.valor, transacciones.id_transacciones, usuarios.email as email, usuarios.id as id_user FROM transacciones , usuarios where transacciones.id_usuarios=usuarios.id and salida=2 and transacciones.estado=2";
 		$reg = $this->conexion->prepare($sql);
 		$reg->execute();
